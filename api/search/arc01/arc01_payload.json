@@ -1,0 +1,44 @@
+{
+    "id": "arc01",
+    "params": {
+        "ca": {
+            "query": "archivio complesso manoscritto sottoscritto Finsiel Almawave",
+            "place": {
+                "province": [
+                    "RM",
+                    "PG"
+                ]
+            },
+            "dates": {
+                "datefrom": "1900-01-01",
+                "dateto": "2100-12-31"
+            }
+        },
+        "sp": {
+            "query": "archivio complesso manoscritto sottoscritto Finsiel Almawave",
+            "place": {
+                "province": [
+                    "RM",
+                    "PG"
+                ]
+            },
+            "dates": {
+                "datefrom": "1900-01-01",
+                "dateto": "2100-12-31"
+            }
+        },
+        "sc": {
+            "query": "archivio complesso manoscritto sottoscritto Finsiel Almawave",
+            "place": {
+                "province": [
+                    "RM",
+                    "PG"
+                ]
+            },
+            "dates": {
+                "datefrom": "1900-01-01",
+                "dateto": "2100-12-31"
+            }
+        }
+    }
+}

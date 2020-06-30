@@ -1,0 +1,416 @@
+{
+    "test": [
+        {
+            "endpoint": "https://10.121.172.70:9200/bcc-archivi/_search/template",
+            "header": {
+                "Content-Type": "application/json",
+                "Authorization": "Basic YWRtaW46YWRtaW4="
+            },
+            "body": {
+                "id": "arc_G1000",
+                "params": {
+                    "ca": {},
+                    "sp": {},
+                    "sc": {}
+                }
+            },
+            "result": {
+                "aggregations": {
+                    "ca": {
+                        "ca_count": {
+                            "value": 10
+                        }
+                    },
+                    "sp": {
+                        "sp_nested": {
+                            "sp_count": {
+                                "value": 10
+                            }
+                        }
+                    },
+                    "sc": {
+                        "sc_nested": {
+                            "sc_count": {
+                                "value": 10
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "endpoint": "https://10.121.172.70:9200/bcc-archivi/_search/template",
+            "header": {
+                "Content-Type": "application/json",
+                "Authorization": "Basic YWRtaW46YWRtaW4="
+            },
+            "body": {
+                "id": "arc_G1000",
+                "params": {
+                    "ca": {},
+                    "sp": {}
+                }
+            },
+            "result": {
+                "aggregations": {
+                    "ca": {
+                        "ca_count": {
+                            "value": 10
+                        }
+                    },
+                    "sp": {
+                        "sp_nested": {
+                            "sp_count": {
+                                "value": 10
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "endpoint": "https://10.121.172.70:9200/bcc-archivi/_search/template",
+            "header": {
+                "Content-Type": "application/json",
+                "Authorization": "Basic YWRtaW46YWRtaW4="
+            },
+            "body": {
+                "id": "arc_G1000",
+                "params": {
+                    "ca": {},
+                    "sc": {}
+                }
+            },
+            "result": {
+                "aggregations": {
+                    "ca": {
+                        "ca_count": {
+                            "value": 10
+                        }
+                    },
+                    "sc": {
+                        "sc_nested": {
+                            "sc_count": {
+                                "value": 10
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "endpoint": "https://10.121.172.70:9200/bcc-archivi/_search/template",
+            "header": {
+                "Content-Type": "application/json",
+                "Authorization": "Basic YWRtaW46YWRtaW4="
+            },
+            "body": {
+                "id": "arc_G1000",
+                "params": {
+                    "sp": {},
+                    "sc": {}
+                }
+            },
+            "result": {
+                "aggregations": {
+                    "sp": {
+                        "sp_nested": {
+                            "sp_count": {
+                                "value": 10
+                            }
+                        }
+                    },
+                    "sc": {
+                        "sc_nested": {
+                            "sc_count": {
+                                "value": 10
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "endpoint": "https://10.121.172.70:9200/bcc-archivi/_search/template",
+            "header": {
+                "Content-Type": "application/json",
+                "Authorization": "Basic YWRtaW46YWRtaW4="
+            },
+            "body": {
+                "id": "arc_G1000",
+                "params": {
+                    "ca": {}
+                }
+            },
+            "result": {
+                "aggregations": {
+                    "ca": {
+                        "ca_count": {
+                            "value": 10
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "endpoint": "https://10.121.172.70:9200/bcc-archivi/_search/template",
+            "header": {
+                "Content-Type": "application/json",
+                "Authorization": "Basic YWRtaW46YWRtaW4="
+            },
+            "body": {
+                "id": "arc_G1000",
+                "params": {
+                    "sp": {}
+                }
+            },
+            "result": {
+                "aggregations": {
+                    "sp": {
+                        "sp_nested": {
+                            "sp_count": {
+                                "value": 10
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "endpoint": "https://10.121.172.70:9200/bcc-archivi/_search/template",
+            "header": {
+                "Content-Type": "application/json",
+                "Authorization": "Basic YWRtaW46YWRtaW4="
+            },
+            "body": {
+                "id": "arc_G1000",
+                "params": {
+                    "sc": {}
+                }
+            },
+            "result": {
+                "aggregations": {
+                    "sc": {
+                        "sc_nested": {
+                            "sc_count": {
+                                "value": 10
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "endpoint": "https://10.121.172.70:9200/bcc-archivi/_search/template",
+            "header": {
+                "Content-Type": "application/json",
+                "Authorization": "Basic YWRtaW46YWRtaW4="
+            },
+            "body": {
+                "id": "arc_G1000",
+                "params": {
+                    "ca": {
+                        "query": "archivio complesso manoscritto"
+                    },
+                    "sp": {
+                        "query": "archivio complesso manoscritto"
+                    },
+                    "sc": {
+                        "query": "archivio complesso manoscritto"
+                    }
+                }
+            },
+            "result": {
+                "aggregations": {
+                    "ca": {
+                        "ca_count": {
+                            "value": 10
+                        }
+                    },
+                    "sp": {
+                        "sp_nested": {
+                            "sp_count": {
+                                "value": 10
+                            }
+                        }
+                    },
+                    "sc": {
+                        "sc_nested": {
+                            "sc_count": {
+                                "value": 10
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "endpoint": "https://10.121.172.70:9200/bcc-archivi/_search/template",
+            "header": {
+                "Content-Type": "application/json",
+                "Authorization": "Basic YWRtaW46YWRtaW4="
+            },
+            "body": {
+                "id": "arc_G1000",
+                "params": {
+                    "ca": {
+                        "province": {
+                            "provinces": [
+                                "RM"
+                            ]
+                        }
+                    },
+                    "sp": {
+                        "province": {
+                            "provinces": [
+                                "RM"
+                            ]
+                        }
+                    },
+                    "sc": {
+                        "province": {
+                            "provinces": [
+                                "RM"
+                            ]
+                        }
+                    }
+                }
+            },
+            "result": {
+                "aggregations": {
+                    "ca": {
+                        "ca_count": {
+                            "value": 10
+                        }
+                    },
+                    "sp": {
+                        "sp_nested": {
+                            "sp_count": {
+                                "value": 10
+                            }
+                        }
+                    },
+                    "sc": {
+                        "sc_nested": {
+                            "sc_count": {
+                                "value": 10
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "endpoint": "https://10.121.172.70:9200/bcc-archivi/_search/template",
+            "header": {
+                "Content-Type": "application/json",
+                "Authorization": "Basic YWRtaW46YWRtaW4="
+            },
+            "body": {
+                "id": "arc_G1000",
+                "params": {
+                    "ca": {
+                        "century_from": {
+                            "centuries": [
+                                "1901-2000"
+                            ]
+                        }
+                    },
+                    "sp": {
+                        "century_from": {
+                            "centuries": [
+                                "1901-2000"
+                            ]
+                        }
+                    },
+                    "sc": {
+                        "century_from": {
+                            "centuries": [
+                                "1901-2000"
+                            ]
+                        }
+                    }
+                }
+            },
+            "result": {
+                "aggregations": {
+                    "ca": {
+                        "ca_count": {
+                            "value": 10
+                        }
+                    },
+                    "sp": {
+                        "sp_nested": {
+                            "sp_count": {
+                                "value": 10
+                            }
+                        }
+                    },
+                    "sc": {
+                        "sc_nested": {
+                            "sc_count": {
+                                "value": 10
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "endpoint": "https://10.121.172.70:9200/bcc-archivi/_search/template",
+            "header": {
+                "Content-Type": "application/json",
+                "Authorization": "Basic YWRtaW46YWRtaW4="
+            },
+            "body": {
+                "id": "arc_G1000",
+                "params": {
+                    "ca": {
+                        "century_to": {
+                            "centuries": [
+                                "1901-2000"
+                            ]
+                        }
+                    },
+                    "sp": {
+                        "century_to": {
+                            "centuries": [
+                                "1901-2000"
+                            ]
+                        }
+                    },
+                    "sc": {
+                        "century_to": {
+                            "centuries": [
+                                "1901-2000"
+                            ]
+                        }
+                    }
+                }
+            },
+            "result": {
+                "aggregations": {
+                    "ca": {
+                        "ca_count": {
+                            "value": 10
+                        }
+                    },
+                    "sp": {
+                        "sp_nested": {
+                            "sp_count": {
+                                "value": 10
+                            }
+                        }
+                    },
+                    "sc": {
+                        "sc_nested": {
+                            "sc_count": {
+                                "value": 10
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ]
+}

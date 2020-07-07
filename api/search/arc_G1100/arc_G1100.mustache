@@ -336,6 +336,12 @@
         "ca_buckets": {
             "composite": {
                 "size": {{ca.size}}{{^ca.size}}5{{/ca.size}},
+                {{#ca.after}}
+                "after": {
+                    "name": "{{ca.after.name}}",
+                    "uri": "{{ca.after.uri}}"
+                },
+                {{/ca.after}}
                 "sources": [
                     {
                         "name": {

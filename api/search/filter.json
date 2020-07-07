@@ -102,5 +102,19 @@
             "key":"SA",
             "value":"Salerno"
         }
+    ],
+    "entity":[
+        {
+            "key": "ca",
+            "value": "Complesso archivistico"
+        },
+        {
+            "key":"sc",
+            "value":"Soggetto conservatore"
+        },
+        {
+            "key":"sp",
+            "value":"Soggetto produttore"
+        }
     ]
 }

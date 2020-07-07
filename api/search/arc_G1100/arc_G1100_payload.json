@@ -3,6 +3,10 @@
     "params": {
         "ca": {
             "size": 5,
+            "after": {
+                "name":"Centro studi Gerardo Dottori",
+                "uri":"FN3"
+            },
             "query": "fotografia",
             "century_from": {
                 "centuries": [

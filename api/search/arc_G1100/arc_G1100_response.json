@@ -1,0 +1,210 @@
+{
+    "took": 23,
+    "timed_out": false,
+    "_shards": {
+        "total": 4,
+        "successful": 4,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 2,
+            "relation": "eq"
+        },
+        "max_score": null,
+        "hits": []
+    },
+    "aggregations": {
+        "sp_filter": {
+            "doc_count": 2,
+            "sp_count": {
+                "value": 1
+            },
+            "sp_buckets": {
+                "after_key": {
+                    "name": "Dottori Gerardo",
+                    "uri": "SP4"
+                },
+                "buckets": [
+                    {
+                        "key": {
+                            "name": "Dottori Gerardo",
+                            "uri": "SP4"
+                        },
+                        "doc_count": 2,
+                        "ca_reverse": {
+                            "doc_count": 2,
+                            "ca_count": {
+                                "value": 1
+                            }
+                        }
+                    }
+                ]
+            }
+        },
+        "province_filter": {
+            "doc_count": 2,
+            "province_buckets": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": [
+                    {
+                        "key": "SA",
+                        "doc_count": 2,
+                        "ca_reverse": {
+                            "doc_count": 2,
+                            "ca_count": {
+                                "value": 1
+                            }
+                        }
+                    }
+                ]
+            },
+            "province_count": {
+                "value": 1
+            }
+        },
+        "datefrom_filter": {
+            "doc_count": 2,
+            "century_count": {
+                "value": 1
+            },
+            "century_buckets": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": [
+                    {
+                        "key": "1901-2000",
+                        "doc_count": 2,
+                        "ca_count": {
+                            "value": 1
+                        },
+                        "quarter_buckets": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "1901-1925",
+                                    "doc_count": 2,
+                                    "ca_count": {
+                                        "value": 1
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "dateto_filter": {
+            "doc_count": 2,
+            "century_count": {
+                "value": 1
+            },
+            "century_buckets": {
+                "doc_count_error_upper_bound": 0,
+                "sum_other_doc_count": 0,
+                "buckets": [
+                    {
+                        "key": "1901-2000",
+                        "doc_count": 2,
+                        "ca_count": {
+                            "value": 1
+                        },
+                        "quarter_buckets": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "1976-2000",
+                                    "doc_count": 2,
+                                    "ca_count": {
+                                        "value": 1
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        },
+        "ca_count": {
+            "value": 1
+        },
+        "ca_buckets": {
+            "after_key": {
+                "name": "Centro studi Gerardo Dottori",
+                "uri": "FN3"
+            },
+            "buckets": [
+                {
+                    "key": {
+                        "name": "Centro studi Gerardo Dottori",
+                        "uri": "FN3"
+                    },
+                    "doc_count": 2,
+                    "uad_nested": {
+                        "doc_count": 8,
+                        "uad_filter": {
+                            "doc_count": 6,
+                            "uad_count": {
+                                "value": 3
+                            }
+                        }
+                    },
+                    "ca_filter": {
+                        "doc_count": 2,
+                        "ca_type": {
+                            "doc_count_error_upper_bound": 0,
+                            "sum_other_doc_count": 0,
+                            "buckets": [
+                                {
+                                    "key": "fondo",
+                                    "doc_count": 1,
+                                    "ca_type_count": {
+                                        "value": 1
+                                    }
+                                },
+                                {
+                                    "key": "serie",
+                                    "doc_count": 1,
+                                    "ca_type_count": {
+                                        "value": 1
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "sc_filter": {
+            "doc_count": 2,
+            "sc_count": {
+                "value": 1
+            },
+            "sc_buckets": {
+                "after_key": {
+                    "name": "privato",
+                    "uri": "SC2"
+                },
+                "buckets": [
+                    {
+                        "key": {
+                            "name": "privato",
+                            "uri": "SC2"
+                        },
+                        "doc_count": 2,
+                        "ca_reverse": {
+                            "doc_count": 2,
+                            "ca_count": {
+                                "value": 1
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

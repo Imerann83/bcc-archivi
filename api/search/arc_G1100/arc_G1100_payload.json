@@ -1,0 +1,53 @@
+{
+    "id": "arc_G1100",
+    "params": {
+        "ca": {
+            "size": 5,
+            "query": "fotografia",
+            "century_from": {
+                "centuries": [
+                    "1901-2000"
+                ],
+                "size": 5
+            },
+            "century_quarter_from": {
+                "quarters": [
+                    "1901-1925"
+                ]
+            },
+            "century_to": {
+                "centuries": [
+                    "1901-2000"
+                ],
+                "size": 5
+            },
+            "century_quarter_to": {
+                "quarters": [
+                    "1976-2000"
+                ]
+            },
+            "province": {
+                "provinces": [
+                    "NA",
+                    "SA"
+                ]
+            },
+            "creator": {
+                "creators": [
+                    "SP1",
+                    "SP2",
+                    "SP3",
+                    "SP4"
+                ],
+                "size": 5
+            },
+            "holder": {
+                "holders": [
+                    "SC1",
+                    "SC2"
+                ],
+                "size": 5
+            }
+        }
+    }
+}

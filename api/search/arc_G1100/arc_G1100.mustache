@@ -1,0 +1,432 @@
+{
+    "size": 0,
+    "query": {
+        "bool": {
+            "filter": [
+                {{#ca.century_from}}
+                        {
+                    "terms": {
+                        "century_from": {{#toJson}}ca.century_from.centuries{{/toJson}}
+                    }
+                }
+                {{#ca.century_quarter_from}},
+                {
+                    "terms": {
+                        "century_quarter_from": {{#toJson}}ca.century_quarter_from.quarters{{/toJson}}
+                    }
+                }
+                {{/ca.century_quarter_from}}
+                {{#ca.century_to}},{{/ca.century_to}}
+                {{^ca.century_to}}{{#ca.province}},{{/ca.province}}{{/ca.century_to}}
+                {{^ca.century_to}}{{^ca.province}}{{#ca.creator}},{{/ca.creator}}{{/ca.province}}{{/ca.century_to}}
+                {{^ca.century_to}}{{^ca.province}}{{^ca.creator}}{{#ca.holder}},{{/ca.holder}}{{/ca.creator}}{{/ca.province}}{{/ca.century_to}}
+                {{/ca.century_from}}
+                {{#ca.century_to}}
+                {
+                    "terms": {
+                        "century_to": {{#toJson}}ca.century_to.centuries{{/toJson}}
+                    }
+                }
+                {{#ca.century_quarter_to}},
+                {
+                    "terms": {
+                        "century_quarter_to": {{#toJson}}ca.century_quarter_to.quarters{{/toJson}}
+                    }
+                }
+                {{/ca.century_quarter_to}}
+                {{#ca.province}},{{/ca.province}}
+                {{^ca.province}}{{#ca.creator}},{{/ca.creator}}{{/ca.province}}
+                {{^ca.province}}{{^ca.creator}}{{#ca.holder}},{{/ca.holder}}{{/ca.creator}}{{/ca.province}}
+                {{/ca.century_to}}
+                {{#ca.province}}
+                {
+                    "nested": {
+                        "path": "sc",
+                        "query": {
+                            "terms": {
+                                "sc.province": {{#toJson}}ca.province.provinces{{/toJson}}
+                            }
+                        }
+                    }
+                }
+                {{#ca.creator}},{{/ca.creator}}
+                {{^ca.creator}}{{#ca.holder}},{{/ca.holder}}{{/ca.creator}}
+                {{/ca.province}}
+                {{#ca.creator}}
+                {
+                    "nested": {
+                        "path": "sp",
+                        "query": {
+                            "terms": {
+                                "sp.uri": {{#toJson}}ca.creator.creators{{/toJson}}
+                            }
+                        }
+                    }
+                }
+                {{#ca.holder}},{{/ca.holder}}
+                {{/ca.creator}}
+                {{#ca.holder}}
+                {
+                    "nested": {
+                        "path": "sc",
+                        "query": {
+                            "terms": {
+                                "sc.uri": {{#toJson}}ca.holder.holders{{/toJson}}
+                            }
+                        }
+                    }
+                }
+                {{/ca.holder}}
+            ],
+            "should": [
+                {{#ca.query}}
+                {
+                    "multi_match": {
+                        "query": "{{ca.query}}",
+                        "type": "best_fields",
+                        "fields": [
+                            "names",
+                            "content",
+                            "history",
+                            "description"
+                        ]
+                    }
+                },
+                {
+                    "nested": {
+                        "path": "uad",
+                        "query": {
+                            "multi_match": {
+                                "query": "{{ca.query}}",
+                                "type": "best_fields",
+                                "fields": [
+                                    "uad.names",
+                                    "uad.content",
+                                    "uad.history",
+                                    "uad.description"
+                                ]
+                            }
+                        }
+                    }
+                }
+                {{/ca.query}}
+            ],
+            "minimum_should_match":{{#ca.query}}1{{/ca.query}}{{^ca.query}}0{{/ca.query}}
+        }
+    },
+    "aggs": {
+        "ca_count": {
+            "cardinality": {
+                "field": "root_uri"
+            }
+        },
+        "sp_filter": {
+            "nested": {
+                "path": "sp"
+            },
+            "aggs": {
+                "sp_count": {
+                    "cardinality": {
+                        "field": "sp.uri"
+                    }
+                },
+                "sp_buckets": {
+                    "composite": {
+                        "size": {{ca.creator.size}}{{^ca.creator.size}}5{{/ca.creator.size}},
+                        "sources": [
+                            {
+                                "name": {
+                                    "terms": {
+                                        "field": "sp.name"
+                                    }
+                                }
+                            },
+                            {
+                                "uri": {
+                                    "terms": {
+                                        "field": "sp.uri"
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "aggs": {
+                        "ca_reverse": {
+                            "reverse_nested": {},
+                            "aggs": {
+                                "ca_count": {
+                                    "cardinality": {
+                                        "field": "root_uri"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "sc_filter": {
+            "nested": {
+                "path": "sc"
+            },
+            "aggs": {
+                "sc_count": {
+                    "cardinality": {
+                        "field": "sc.uri"
+                    }
+                },
+                "sc_buckets": {
+                    "composite": {
+                        "size": {{ca.holder.size}}{{^ca.holder.size}}5{{/ca.holder.size}},
+                        "sources": [
+                            {
+                                "name": {
+                                    "terms": {
+                                        "field": "sc.name"
+                                    }
+                                }
+                            },
+                            {
+                                "uri": {
+                                    "terms": {
+                                        "field": "sc.uri"
+                                    }
+                                }
+                            }
+                        ]
+                    },
+                    "aggs": {
+                        "ca_reverse": {
+                            "reverse_nested": {},
+                            "aggs": {
+                                "ca_count": {
+                                    "cardinality": {
+                                        "field": "root_uri"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "province_filter": {
+            "nested": {
+                "path": "sc"
+            },
+            "aggs": {
+                "province_count": {
+                    "cardinality": {
+                        "field": "sc.province"
+                    }
+                },
+                "province_buckets": {
+                    "terms": {
+                        "field": "sc.province",
+                        "order": {
+                            "_key": "asc"
+                        },
+                        "size": 5
+                    },
+                    "aggs": {
+                        "ca_reverse": {
+                            "reverse_nested": {},
+                            "aggs": {
+                                "ca_count": {
+                                    "cardinality": {
+                                        "field": "root_uri"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "datefrom_filter": {
+            "filter": {
+                "exists": {
+                    "field": "century_from"
+                }
+            },
+            "aggs": {
+                "century_count": {
+                    "cardinality": {
+                        "field": "century_from"
+                    }
+                },
+                "century_buckets": {
+                    "terms": {
+                        "field": "century_from",
+                        "size": {{ca.century_from.size}}{{^ca.century_from.size}}5{{/ca.century_from.size}},
+                        "order": {
+                            "_key": "asc"
+                        }
+                    },
+                    "aggs": {
+                        "ca_count": {
+                            "cardinality": {
+                                "field": "root_uri"
+                            }
+                        },
+                        "quarter_buckets": {
+                            "terms": {
+                                "field": "century_quarter_from",
+                                "order": {
+                                    "_key": "asc"
+                                }
+                            },
+                            "aggs": {
+                                "ca_count": {
+                                    "cardinality": {
+                                        "field": "root_uri"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "dateto_filter": {
+            "filter": {
+                "exists": {
+                    "field": "century_to"
+                }
+            },
+            "aggs": {
+                "century_count": {
+                    "cardinality": {
+                        "field": "century_to"
+                    }
+                },
+                "century_buckets": {
+                    "terms": {
+                        "field": "century_to",
+                        "size": {{ca.century_to.size}}{{^ca.century_to.size}}5{{/ca.century_to.size}},
+                        "order": {
+                            "_key": "asc"
+                        }
+                    },
+                    "aggs": {
+                        "ca_count": {
+                            "cardinality": {
+                                "field": "root_uri"
+                            }
+                        },
+                        "quarter_buckets": {
+                            "terms": {
+                                "field": "century_quarter_to",
+                                "order": {
+                                    "_key": "asc"
+                                }
+                            },
+                            "aggs": {
+                                "ca_count": {
+                                    "cardinality": {
+                                        "field": "root_uri"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "ca_buckets": {
+            "composite": {
+                "size": {{ca.size}}{{^ca.size}}5{{/ca.size}},
+                "sources": [
+                    {
+                        "name": {
+                            "terms": {
+                                "field": "root_name"
+                            }
+                        }
+                    },
+                    {
+                        "uri": {
+                            "terms": {
+                                "field": "root_uri"
+                            }
+                        }
+                    }
+                ]
+            },
+            "aggs": {
+                "ca_filter": {
+                    "filter": {
+                        "bool": {
+                            "filter": [
+                                {{#ca.query}}
+                                {
+                                    "multi_match": {
+                                        "query": "{{ca.query}}",
+                                        "type": "best_fields",
+                                        "fields": [
+                                            "names",
+                                            "content",
+                                            "history",
+                                            "description"
+                                        ]
+                                    }
+                                }
+                                {{/ca.query}}
+                            ]
+                        }
+                    },
+                    "aggs": {
+                        "ca_type": {
+                            "terms": {
+                                "field": "type"
+                            },
+                            "aggs": {
+                                "ca_type_count": {
+                                    "cardinality": {
+                                        "field": "uri"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "uad_nested": {
+                    "nested": {
+                        "path": "uad"
+                    },
+                    "aggs": {
+                        "uad_filter": {
+                            "filter": {
+                                "bool": {
+                                    "filter": [
+                                        {{#ca.query}}
+                                        {
+                                            "multi_match": {
+                                                "query": "{{ca.query}}",
+                                                "type": "best_fields",
+                                                "fields": [
+                                                    "uad.names",
+                                                    "uad.content",
+                                                    "uad.history",
+                                                    "uad.description"
+                                                ]
+                                            }
+                                        }
+                                        {{/ca.query}}
+                                    ]
+                                }
+                            },
+                            "aggs": {
+                                "uad_count": {
+                                    "cardinality": {
+                                        "field": "uad.uri"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

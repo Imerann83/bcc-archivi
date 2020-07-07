@@ -1,0 +1,63 @@
+{
+    "id": "arc_G1000",
+    "params": {
+        "ca": {
+            "query": "archivio complesso manoscritto sottoscritto Finsiel Almawave",
+            "century_from": {
+                "centuries": [
+                    "1901-2000"
+                ]
+            },
+            "century_to": {
+                "centuries": [
+                    "2001-2100",
+                    "1901-2000"
+                ]
+            },
+            "province": {
+                "provinces": [
+                    "NA",
+                    "SA"
+                ]
+            }
+        },
+        "sp": {
+            "query": "archivio complesso manoscritto sottoscritto Finsiel Almawave",
+            "century_from": {
+                "centuries": [
+                    "1901-2000"
+                ]
+            },
+            "century_to": {
+                "centuries": [
+                    "1901-2000"
+                ]
+            },
+            "province": {
+                "provinces": [
+                    "NA",
+                    "SA"
+                ]
+            }
+        },
+        "sc": {
+            "query": "archivio complesso manoscritto sottoscritto Finsiel Almawave",
+            "century_from": {
+                "centuries": [
+                    "1901-2000"
+                ]
+            },
+            "century_to": {
+                "centuries": [
+                    "1901-2000"
+                ]
+            },
+            "province": {
+                "provinces": [
+                    "NA",
+                    "SA"
+                ]
+            }
+        }
+    }
+}

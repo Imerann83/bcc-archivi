@@ -1,0 +1,248 @@
+{
+    "size": 0,
+    "aggs": {
+        {{#ca}}
+        "ca": {
+            "filter": {
+                "bool": {
+                    "filter": [
+                        {{#ca.century_from}}
+                        {
+                            "terms": {
+                                "century_from": {{#toJson}}ca.century_from.centuries{{/toJson}}
+                            }
+                        }
+                        {{#ca.century_to}},{{/ca.century_to}}
+                        {{^ca.century_to}}{{#ca.province}},{{/ca.province}}{{/ca.century_to}}
+                        {{/ca.century_from}}
+                        {{#ca.century_to}}
+                        {
+                            "terms": {
+                                "century_to": {{#toJson}}ca.century_to.centuries{{/toJson}}
+                            }
+                        }
+                        {{#ca.province}},{{/ca.province}}
+                        {{/ca.century_to}}
+                        {{#ca.province}}
+                        {
+                            "nested": {
+                                "path": "sc",
+                                "query": {
+                                    "terms": {
+                                        "sc.province": {{#toJson}}ca.province.provinces{{/toJson}}
+                                    }
+                                }
+                            }
+                        }
+                        {{/ca.province}}
+                    ],
+                    "should": [
+                        {{#ca.query}}
+                        {
+                            "multi_match": {
+                                "query": "{{ca.query}}",
+                                "type": "best_fields",
+                                "fields": [
+                                    "names",
+                                    "content",
+                                    "history",
+                                    "description"
+                                ]
+                            }
+                        },
+                        {
+                            "nested": {
+                                "path": "uad",
+                                "query": {
+                                    "multi_match": {
+                                        "query": "{{ca.query}}",
+                                        "type": "best_fields",
+                                        "fields": [
+                                            "uad.names",
+                                            "uad.content",
+                                            "uad.history",
+                                            "uad.description"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                        {{/ca.query}}
+                    ],
+                    "minimum_should_match":{{#ca.query}}1{{/ca.query}}{{^ca.query}}0{{/ca.query}}
+                }
+            },
+            "aggs": {
+                "ca_count": {
+                    "cardinality": {
+                        "field": "root_uri"
+                    }
+                }
+            }
+        }
+        {{#sp}},{{/sp}}
+        {{^sp}}{{#sc}},{{/sc}}{{/sp}}
+        {{/ca}}
+        {{#sp}}
+        "sp": {
+            "filter": {
+                "bool": {
+                    "filter": [
+                        {{#sp.century_from}}
+                        {
+                            "nested": {
+                                "path": "sp",
+                                "query": {
+                                    "terms": {
+                                        "sp.century_from": {{#toJson}}sp.century_from.centuries{{/toJson}}
+                                    }
+                                }
+                            }
+                        }
+                        {{#sp.century_to}},{{/sp.century_to}}
+                        {{^sp.century_to}}{{#sp.province}},{{/sp.province}}{{/sp.century_to}}
+                        {{/sp.century_from}}
+                        {{#sp.century_to}}
+                        {
+                            "nested": {
+                                "path": "sp",
+                                "query": {
+                                    "terms": {
+                                        "sp.century_to": {{#toJson}}sp.century_to.centuries{{/toJson}}
+                                    }
+                                }
+                            }
+                        }
+                        {{#sp.province}},{{/sp.province}}
+                        {{/sp.century_to}}
+                        {{#sp.province}}
+                        {
+                            "nested": {
+                                "path": "sc",
+                                "query": {
+                                    "terms": {
+                                        "sc.province": {{#toJson}}sp.province.provinces{{/toJson}}
+                                    }
+                                }
+                            }
+                        }
+                        {{/sp.province}}
+                    ],
+                    "should": [
+                        {{#sp.query}}
+                        {
+                            "nested": {
+                                "path": "sp",
+                                "query": {
+                                    "multi_match": {
+                                        "query": "{{sp.query}}",
+                                        "type": "best_fields",
+                                        "fields": [
+                                            "sp.names",
+                                            "sp.content",
+                                            "sp.history",
+                                            "sp.description"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                        {{/sp.query}}
+                    ],
+                    "minimum_should_match":{{#sp.query}}1{{/sp.query}}{{^sp.query}}0{{/sp.query}}
+                }
+            },
+            "aggs": {
+                "sp_nested": {
+                    "nested": {
+                        "path": "sp"
+                    },
+                    "aggs": {
+                        "sp_count": {
+                            "cardinality": {
+                                "field": "sp.uri"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        {{#sc}},{{/sc}}
+        {{/sp}}
+        {{#sc}}
+        "sc": {
+            "filter": {
+                "bool": {
+                    "filter": [
+                        {{#sc.century_from}}
+                        {
+                            "terms": {
+                                "century_from": {{#toJson}}sc.century_from.centuries{{/toJson}}
+                            }
+                        }
+                        {{#sc.century_to}},{{/sc.century_to}}
+                        {{^sc.century_to}}{{#sc.province}},{{/sc.province}}{{/sc.century_to}}
+                        {{/sc.century_from}}
+                        {{#sc.century_to}}
+                        {
+                            "terms": {
+                                "century_to": {{#toJson}}sc.century_to.centuries{{/toJson}}
+                            }
+                        }
+                        {{#sc.province}},{{/sc.province}}
+                        {{/sc.century_to}}
+                        {{#sc.province}}
+                        {
+                            "nested": {
+                                "path": "sc",
+                                "query": {
+                                    "terms": {
+                                        "sc.province": {{#toJson}}sc.province.provinces{{/toJson}}
+                                    }
+                                }
+                            }
+                        }
+                        {{/sc.province}}
+                    ],
+                    "should": [
+                        {{#sc.query}}
+                        {
+                            "nested": {
+                                "path": "sc",
+                                "query": {
+                                    "multi_match": {
+                                        "query": "{{sc.query}}",
+                                        "type": "best_fields",
+                                        "fields": [
+                                            "sc.names",
+                                            "sc.content",
+                                            "sc.history",
+                                            "sc.description"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                        {{/sc.query}}
+                    ],
+                    "minimum_should_match":{{#sc.query}}1{{/sc.query}}{{^sc.query}}0{{/sc.query}}
+                }
+            },
+            "aggs": {
+                "sc_nested": {
+                    "nested": {
+                        "path": "sc"
+                    },
+                    "aggs": {
+                        "sc_count": {
+                            "cardinality": {
+                                "field": "sc.uri"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        {{/sc}}
+    }
+}

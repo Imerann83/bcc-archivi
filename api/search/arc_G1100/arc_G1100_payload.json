@@ -3,16 +3,20 @@
     "params": {
         "ca": {
             "size": 5,
+            "century_from_size": 5,
+            "century_to_size": 5,
+            "province_size": 5,
+            "creator_size": 5,
+            "holder_size": 5,
             "after": {
                 "name":"Centro studi Gerardo Dottori",
                 "uri":"FN3"
             },
-            "query": "fotografia",
+            "query": "cartolina",
             "century_from": {
                 "centuries": [
                     "1901-2000"
-                ],
-                "size": 5
+                ]
             },
             "century_quarter_from": {
                 "quarters": [
@@ -22,8 +26,7 @@
             "century_to": {
                 "centuries": [
                     "1901-2000"
-                ],
-                "size": 5
+                ]
             },
             "century_quarter_to": {
                 "quarters": [
@@ -42,15 +45,13 @@
                     "SP2",
                     "SP3",
                     "SP4"
-                ],
-                "size": 5
+                ]
             },
             "holder": {
                 "holders": [
                     "SC1",
                     "SC2"
-                ],
-                "size": 5
+                ]
             }
         }
     }

@@ -132,7 +132,7 @@
                 },
                 "sp_buckets": {
                     "composite": {
-                        "size": {{ca.creator.size}}{{^ca.creator.size}}5{{/ca.creator.size}},
+                        "size": {{ca.creator_size}}{{^ca.creator_size}}5{{/ca.creator_size}},
                         "sources": [
                             {
                                 "name": {
@@ -177,7 +177,7 @@
                 },
                 "sc_buckets": {
                     "composite": {
-                        "size": {{ca.holder.size}}{{^ca.holder.size}}5{{/ca.holder.size}},
+                        "size": {{ca.holder_size}}{{^ca.holder_size}}5{{/ca.holder_size}},
                         "sources": [
                             {
                                 "name": {
@@ -226,7 +226,7 @@
                         "order": {
                             "_key": "asc"
                         },
-                        "size": 5
+                        "size": {{ca.province_size}}{{^ca.province_size}}5{{/ca.province_size}}
                     },
                     "aggs": {
                         "ca_reverse": {
@@ -258,7 +258,7 @@
                 "century_buckets": {
                     "terms": {
                         "field": "century_from",
-                        "size": {{ca.century_from.size}}{{^ca.century_from.size}}5{{/ca.century_from.size}},
+                        "size": {{ca.century_from_size}}{{^ca.century_from_size}}5{{/ca.century_from_size}},
                         "order": {
                             "_key": "asc"
                         }
@@ -303,7 +303,7 @@
                 "century_buckets": {
                     "terms": {
                         "field": "century_to",
-                        "size": {{ca.century_to.size}}{{^ca.century_to.size}}5{{/ca.century_to.size}},
+                        "size": {{ca.century_to_size}}{{^ca.century_to_size}}5{{/ca.century_to_size}},
                         "order": {
                             "_key": "asc"
                         }

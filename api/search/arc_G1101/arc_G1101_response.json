@@ -1,5 +1,5 @@
 {
-    "took": 10,
+    "took": 7,
     "timed_out": false,
     "_shards": {
         "total": 4,
@@ -9,103 +9,133 @@
     },
     "hits": {
         "total": {
-            "value": 3,
+            "value": 1,
             "relation": "eq"
         },
-        "max_score": 0.0,
+        "max_score": 7.0801067,
         "hits": [
             {
                 "_index": "bcc-archivi",
                 "_type": "_doc",
                 "_id": "1",
-                "_score": 0.0,
+                "_score": 7.0801067,
                 "_source": {
+                    "level": 0,
+                    "century_from": "1901-2000",
+                    "root_name": "Archivio storico Almawave",
+                    "language": "ita",
+                    "dates": {
+                        "gte": "1990-10-01",
+                        "lte": "2099-12-31"
+                    },
+                    "history": "L'archivio nasce per volontà del presidente Alberto Tripi ed è tutt'ora conservato nella sede originale della biblioteca aziendale",
+                    "type": "fondo",
+                    "uri": "FN1",
+                    "content": "L'archivio Almawave raccoglie tutti i documenti di progetto realizzati dai dipendenti Almawave.",
+                    "sc": [
+                        {
+                            "names": [
+                                "Almawave S.r.l.",
+                                "Almaviva Consulting S.r.l."
+                            ],
+                            "province": [
+                                "NA"
+                            ],
+                            "name": "Almawave S.r.l.",
+                            "description": "Almawave S.r.l., già Almaviva Consulting S.r.l., è l'azienda tecnologica di punta del gruppo Almaviva, specializzata in analisi del linguaggio naturale.",
+                            "location": [
+                                "Napoli (NA)"
+                            ],
+                            "type": "ente economico/impresa",
+                            "uri": "SC1"
+                        }
+                    ],
                     "path": "FN1",
+                    "names": [
+                        "Archivio storico Almawave"
+                    ],
                     "name": "Archivio storico Almawave",
-                    "dates": {
-                        "gte": "1990-10-01",
-                        "lte": "2099-12-31"
-                    },
-                    "uri": "FN1"
-                }
-            },
-            {
-                "_index": "bcc-archivi",
-                "_type": "_doc",
-                "_id": "2",
-                "_score": 0.0,
-                "_source": {
-                    "path": "FN1|SR1",
-                    "name": "Gestione di progetto",
-                    "dates": {
-                        "gte": "1990-10-01",
-                        "lte": "2099-12-31"
-                    },
-                    "uri": "SR1"
-                }
-            },
-            {
-                "_index": "bcc-archivi",
-                "_type": "_doc",
-                "_id": "3",
-                "_score": 0.0,
-                "_source": {
-                    "path": "FN1|SR2",
-                    "name": "Documentazione RTI",
-                    "dates": {
-                        "gte": "1991-01-01",
-                        "lte": "2099-12-31"
-                    },
-                    "uri": "SR2"
+                    "root_uri": "FN1",
+                    "sp": [
+                        {
+                            "names": [
+                                "Almawave S.r.l.",
+                                "Almaviva Consulting S.r.l."
+                            ],
+                            "province": [
+                                "RM",
+                                "MI"
+                            ],
+                            "century_from": [
+                                "1901-2000"
+                            ],
+                            "organization_legal": "privato",
+                            "name": "Almawave S.r.l.",
+                            "organization_type": "ente economico/impresa",
+                            "dates": {
+                                "gte": "1990-02-25",
+                                "lte": "2099-12-31"
+                            },
+                            "location": [
+                                "Roma (RM)",
+                                "Milano (MI)"
+                            ],
+                            "history": "Almawave S.r.l. nasce nel 1990 come Almaviva Consulting per volere del presidente Marco Tripi e dell'amministratore delegato Valeria Sandei, come azienda tecnologica di punta del gruppo Almaviva.",
+                            "type": "ente",
+                            "uri": "SP1",
+                            "century_quarter_from": [
+                                "1976-2000"
+                            ]
+                        },
+                        {
+                            "names": [
+                                "Almaviva S.p.a.",
+                                "Finsiel - Finanziaria per i Sistemi Informativi Elettronici S.p.a."
+                            ],
+                            "province": [
+                                "RM",
+                                "MI",
+                                "GE",
+                                "CS"
+                            ],
+                            "century_from": [
+                                "1901-2000"
+                            ],
+                            "organization_legal": "privato",
+                            "name": "Almaviva S.p.a.",
+                            "organization_type": "ente economico/impresa",
+                            "dates": {
+                                "gte": "1985-09-12",
+                                "lte": "2099-12-31"
+                            },
+                            "location": [
+                                "Roma (RM)",
+                                "Milano (MI)",
+                                "Genova (GE)",
+                                "Rende (CS)"
+                            ],
+                            "history": "La holding presieduta da Alberto Tripi, COS.IT, costituita dal Gruppo COS e da Interbanca, nel 2005 acquisisce il gruppo Finsiel da Telecom Italia. Dall'integrazione delle attività del Gruppo COS nei servizi di telecomunicazioni e quelli nell'informatica di Finsiel nasce il gruppo AlmavivA.",
+                            "type": "ente",
+                            "uri": "SP2",
+                            "century_quarter_from": [
+                                "1976-2000"
+                            ]
+                        }
+                    ],
+                    "century_quarter_from": "1976-2000"
+                },
+                "highlight": {
+                    "names": [
+                        "Archivio storico Almawave"
+                    ],
+                    "history": [
+                        "L'archivio nasce per volontà del presidente Alberto <em>Tripi</em> ed è tutt'ora conservato nella sede originale della biblioteca aziendale"
+                    ],
+                    "content": [
+                        "L'archivio Almawave raccoglie tutti i documenti di progetto realizzati dai dipendenti Almawave."
+                    ]
                 }
             }
         ]
-    },
-    "aggregations": {
-        "ca_buckets": {
-            "doc_count_error_upper_bound": 0,
-            "sum_other_doc_count": 0,
-            "buckets": [
-                {
-                    "key": "FN1",
-                    "doc_count": 1,
-                    "uad_nested": {
-                        "doc_count": 8,
-                        "uad_filter": {
-                            "doc_count": 0,
-                            "uad_count": {
-                                "value": 0
-                            }
-                        }
-                    }
-                },
-                {
-                    "key": "SR1",
-                    "doc_count": 1,
-                    "uad_nested": {
-                        "doc_count": 5,
-                        "uad_filter": {
-                            "doc_count": 5,
-                            "uad_count": {
-                                "value": 5
-                            }
-                        }
-                    }
-                },
-                {
-                    "key": "SR2",
-                    "doc_count": 1,
-                    "uad_nested": {
-                        "doc_count": 3,
-                        "uad_filter": {
-                            "doc_count": 3,
-                            "uad_count": {
-                                "value": 3
-                            }
-                        }
-                    }
-                }
-            ]
-        }
     }
 }

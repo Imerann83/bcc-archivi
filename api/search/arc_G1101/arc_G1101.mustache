@@ -1,0 +1,48 @@
+{
+    "size": 1,
+    "_source": {
+        "exclude": [
+            "uad.*"
+        ]
+    },
+    "query": {
+        "bool": {
+            "filter": [
+                {{#ca.uri}}
+                {
+                    "term": {
+                        "uri": "{{ca.uri}}"
+                    }
+                }
+                {{/ca.uri}}
+            ],
+            "should": [
+                {{#ca.query}}
+                {
+                    "multi_match": {
+                        "query": "{{ca.query}}",
+                        "type": "best_fields",
+                        "fields": [
+                            "names",
+                            "content",
+                            "history",
+                            "description"
+                        ]
+                    }
+                }
+                {{/ca.query}}
+            ],
+            "minimum_should_match": 0
+        }
+    },
+    "highlight": {
+        "number_of_fragments": 0,
+        "no_match_size": 10000,
+        "fields": {
+            "content": {},
+            "names": {},
+            "history": {},
+            "description": {}
+        }
+    }
+}

@@ -1,0 +1,56 @@
+{
+    "size": 10000,
+    "_source": ["path","uri","name","dates"],
+    "query": {
+        "bool": {
+            "filter": [
+                {{#ca.uri}}
+                {
+                    "multi_match": {
+                        "query": "{{ca.uri}}",
+                        "fields": [
+                            "path"
+                        ]
+                    }
+                }
+                {{/ca.uri}}
+            ]
+        }
+    },
+    "aggs": {
+        "ca_buckets": {
+            "terms": {
+                "field": "uri"
+            },
+            "aggs": {
+                "uad_nested": {
+                    "nested": {
+                        "path": "uad"
+                    },
+                    "aggs": {
+                        "uad_filter": {
+                            "filter": {
+                                "bool": {
+                                    "filter": [
+                                        {
+                                            "term": {
+                                                "uad.is_child": true
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "aggs": {
+                                "uad_count": {
+                                    "cardinality": {
+                                        "field": "uad.uri"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

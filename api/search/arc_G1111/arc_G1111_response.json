@@ -1,0 +1,49 @@
+{
+    "took": 29,
+    "timed_out": false,
+    "_shards": {
+        "total": 4,
+        "successful": 4,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 2,
+            "relation": "eq"
+        },
+        "max_score": 7.0801067,
+        "hits": [
+            {
+                "_index": "bcc-archivi",
+                "_type": "_doc",
+                "_id": "1",
+                "_score": 7.0801067,
+                "_source": {
+                    "path": "FN1",
+                    "name": "Archivio storico Almawave",
+                    "dates": {
+                        "gte": "1990-10-01",
+                        "lte": "2099-12-31"
+                    },
+                    "uri": "FN1"
+                }
+            },
+            {
+                "_index": "bcc-archivi",
+                "_type": "_doc",
+                "_id": "3",
+                "_score": 6.155427,
+                "_source": {
+                    "path": "FN1|SR2",
+                    "name": "Documentazione RTI",
+                    "dates": {
+                        "gte": "1991-01-01",
+                        "lte": "2099-12-31"
+                    },
+                    "uri": "SR2"
+                }
+            }
+        ]
+    }
+}

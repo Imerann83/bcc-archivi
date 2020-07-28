@@ -1,0 +1,10 @@
+# Lista query
+
+| Codice | Ambito | Entità | Descrizione |
+|-|-|-|-|
+| arc_G1000 | Ricerca Guidata | Complesso archivistico, Soggetto produttore, Soggetto conservatore | Ricerca per tipo entità, stringa, provincia, secolo remoto e secolo recente che restituisce tre faccette con il totale dei complessi radice, dei soggetti produttori e dei soggetti conservatori |
+| arc_G1100 | Ricerca Guidata | Complesso archivistico | Ricerca dei complessi archivistici per stringa, provincia, secolo remoto, secolo recente, soggetto produttore e soggetto conservatore che restituisce le faccette paginate dei complessi archivistici radice |
+| arc_G1110 | Ricerca Guidata | Complesso archivistico | Ricerca dei complessi archivistici radice per identificativo che restituisce il complesso archivistico ricercato per identificativo e tutti i suoi discendenti che soddisfano i criteri di ricerca impostati |
+| arc_G1111 | Ricerca Guidata | Complesso archivistico | Ricerca dei complessi archivistici radice per identificativo, stringa, provincia, secolo remoto, secolo recente, soggetto produttore e soggetto conservatore che restituisce il complesso archivistico ricercato per identificativo e tutti i suoi discendenti che soddisfano i criteri di ricerca impostati |
+| arc_G1112 | Ricerca Guidata | Complesso archivistico | Ricerca dei complessi archivistici radice per identificativo, stringa, provincia, secolo remoto, secolo recente, soggetto produttore e soggetto conservatore che restituisce una faccetta per il complesso archivistico ricercato per identificativo e per tutti i suoi discendenti, contenente il conteggio distinto delle unità archivistico - documentarie figlie che soddisfano i criteri di ricerca impostati |
+| arc_G1101 | Ricerca Guidata | Complesso archivistico | Ricerca dei complessi archivistici per identificativo e stringa che restituisce la scheda del complesso con la stringa evidenziata |

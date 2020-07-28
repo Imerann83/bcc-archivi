@@ -1,0 +1,83 @@
+{
+    "took": 21,
+    "timed_out": false,
+    "_shards": {
+        "total": 4,
+        "successful": 4,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 2,
+            "relation": "eq"
+        },
+        "max_score": 0.0,
+        "hits": [
+            {
+                "_index": "bcc-archivi",
+                "_type": "_doc",
+                "_id": "2",
+                "_score": 0.0,
+                "_source": {
+                    "path": "FN1|SR1",
+                    "name": "Gestione di progetto",
+                    "dates": {
+                        "gte": "1990-10-01",
+                        "lte": "2099-12-31"
+                    },
+                    "uri": "SR1"
+                }
+            },
+            {
+                "_index": "bcc-archivi",
+                "_type": "_doc",
+                "_id": "3",
+                "_score": 0.0,
+                "_source": {
+                    "path": "FN1|SR2",
+                    "name": "Documentazione RTI",
+                    "dates": {
+                        "gte": "1991-01-01",
+                        "lte": "2099-12-31"
+                    },
+                    "uri": "SR2"
+                }
+            }
+        ]
+    },
+    "aggregations": {
+        "ca_buckets": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+                {
+                    "key": "SR1",
+                    "doc_count": 1,
+                    "uad_nested": {
+                        "doc_count": 5,
+                        "uad_filter": {
+                            "doc_count": 1,
+                            "uad_count": {
+                                "value": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "key": "SR2",
+                    "doc_count": 1,
+                    "uad_nested": {
+                        "doc_count": 3,
+                        "uad_filter": {
+                            "doc_count": 3,
+                            "uad_count": {
+                                "value": 3
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

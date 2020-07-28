@@ -1,0 +1,182 @@
+{
+    "size": 10000,
+    "_source": ["path","uri","name","dates"],
+    "query": {
+        "bool": {
+            "filter": [
+                {{#ca.uri}}
+                {
+                    "multi_match": {
+                        "query": "{{ca.uri}}",
+                        "fields": [
+                            "path"
+                        ]
+                    }
+                }
+                {{#ca.century_from}},{{/ca.century_from}}
+                {{^ca.century_from}}{{#ca.century_to}},{{/ca.century_to}}{{/ca.century_from}}
+                {{^ca.century_from}}{{^ca.century_to}}{{#ca.province}},{{/ca.province}}{{/ca.century_to}}{{/ca.century_from}}
+                {{^ca.century_from}}{{^ca.century_to}}{{^ca.province}}{{#ca.creator}},{{/ca.creator}}{{/ca.province}}{{/ca.century_to}}{{/ca.century_from}}
+                {{^ca.century_from}}{{^ca.century_to}}{{^ca.province}}{{^ca.creator}}{{#ca.holder}},{{/ca.holder}}{{/ca.creator}}{{/ca.province}}{{/ca.century_to}}{{/ca.century_from}}
+                {{/ca.uri}}
+                {{#ca.century_from}}
+                        {
+                    "terms": {
+                        "century_from": {{#toJson}}ca.century_from.centuries{{/toJson}}
+                    }
+                }
+                {{#ca.century_quarter_from}},
+                {
+                    "terms": {
+                        "century_quarter_from": {{#toJson}}ca.century_quarter_from.quarters{{/toJson}}
+                    }
+                }
+                {{/ca.century_quarter_from}}
+                {{#ca.century_to}},{{/ca.century_to}}
+                {{^ca.century_to}}{{#ca.province}},{{/ca.province}}{{/ca.century_to}}
+                {{^ca.century_to}}{{^ca.province}}{{#ca.creator}},{{/ca.creator}}{{/ca.province}}{{/ca.century_to}}
+                {{^ca.century_to}}{{^ca.province}}{{^ca.creator}}{{#ca.holder}},{{/ca.holder}}{{/ca.creator}}{{/ca.province}}{{/ca.century_to}}
+                {{/ca.century_from}}
+                {{#ca.century_to}}
+                {
+                    "terms": {
+                        "century_to": {{#toJson}}ca.century_to.centuries{{/toJson}}
+                    }
+                }
+                {{#ca.century_quarter_to}},
+                {
+                    "terms": {
+                        "century_quarter_to": {{#toJson}}ca.century_quarter_to.quarters{{/toJson}}
+                    }
+                }
+                {{/ca.century_quarter_to}}
+                {{#ca.province}},{{/ca.province}}
+                {{^ca.province}}{{#ca.creator}},{{/ca.creator}}{{/ca.province}}
+                {{^ca.province}}{{^ca.creator}}{{#ca.holder}},{{/ca.holder}}{{/ca.creator}}{{/ca.province}}
+                {{/ca.century_to}}
+                {{#ca.province}}
+                {
+                    "nested": {
+                        "path": "sc",
+                        "query": {
+                            "terms": {
+                                "sc.province": {{#toJson}}ca.province.provinces{{/toJson}}
+                            }
+                        }
+                    }
+                }
+                {{#ca.creator}},{{/ca.creator}}
+                {{^ca.creator}}{{#ca.holder}},{{/ca.holder}}{{/ca.creator}}
+                {{/ca.province}}
+                {{#ca.creator}}
+                {
+                    "nested": {
+                        "path": "sp",
+                        "query": {
+                            "terms": {
+                                "sp.uri": {{#toJson}}ca.creator.creators{{/toJson}}
+                            }
+                        }
+                    }
+                }
+                {{#ca.holder}},{{/ca.holder}}
+                {{/ca.creator}}
+                {{#ca.holder}}
+                {
+                    "nested": {
+                        "path": "sc",
+                        "query": {
+                            "terms": {
+                                "sc.uri": {{#toJson}}ca.holder.holders{{/toJson}}
+                            }
+                        }
+                    }
+                }
+                {{/ca.holder}}
+            ],
+            "should": [
+                {
+                    "nested": {
+                        "path": "uad",
+                        "query": {
+                            "bool": {
+                                "filter": [
+                                    {
+                                        "term": {
+                                            "uad.is_child": true
+                                        }
+                                    }
+                                    {{#ca.query}},
+                                    {
+                                        "multi_match": {
+                                            "query": "{{ca.query}}",
+                                            "type": "best_fields",
+                                            "fields": [
+                                                "uad.names",
+                                                "uad.content",
+                                                "uad.history",
+                                                "uad.description"
+                                            ]
+                                        }
+                                    }
+                                    {{/ca.query}}
+                                ]
+                            }
+                        }
+                    }
+                }
+            ],
+            "minimum_should_match": 1
+        }
+    },
+    "aggs": {
+        "ca_buckets": {
+            "terms": {
+                "field": "uri"
+            },
+            "aggs": {
+                "uad_nested": {
+                    "nested": {
+                        "path": "uad"
+                    },
+                    "aggs": {
+                        "uad_filter": {
+                            "filter": {
+                                "bool": {
+                                    "filter": [
+                                        {
+                                            "term": {
+                                                "uad.is_child": true
+                                            }
+                                        }
+                                        {{#ca.query}},
+                                        {
+                                            "multi_match": {
+                                                "query": "{{ca.query}}",
+                                                "type": "best_fields",
+                                                "fields": [
+                                                    "uad.names",
+                                                    "uad.content",
+                                                    "uad.history",
+                                                    "uad.description"
+                                                ]
+                                            }
+                                        }
+                                        {{/ca.query}}
+                                    ]
+                                }
+                            },
+                            "aggs": {
+                                "uad_count": {
+                                    "cardinality": {
+                                        "field": "uad.uri"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

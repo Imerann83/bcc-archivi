@@ -1,0 +1,38 @@
+{
+    "id": "arc_G1112",
+    "params": {
+        "ca": {
+            "uri": "FN1",
+            "query": "Almaviva Tripi Arcca",
+            "century_from": {
+                "centuries": [
+                    "1901-2000"
+                ]
+            },
+            "century_quarter_from": {
+                "quarters": [
+                    "1976-2000"
+                ]
+            },
+            "province": {
+                "provinces": [
+                    "NA"
+                ]
+            },
+            "creator": {
+                "creators": [
+                    "SP1",
+                    "SP2",
+                    "SP3",
+                    "SP4"
+                ]
+            },
+            "holder": {
+                "holders": [
+                    "SC1",
+                    "SC2"
+                ]
+            }
+        }
+    }
+}

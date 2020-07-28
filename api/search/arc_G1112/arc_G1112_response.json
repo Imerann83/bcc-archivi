@@ -1,5 +1,5 @@
 {
-    "took": 21,
+    "took": 6,
     "timed_out": false,
     "_shards": {
         "total": 4,
@@ -26,6 +26,7 @@
                         "gte": "1990-10-01",
                         "lte": "2099-12-31"
                     },
+                    "type": "serie",
                     "uri": "SR1"
                 }
             },
@@ -41,6 +42,7 @@
                         "gte": "1991-01-01",
                         "lte": "2099-12-31"
                     },
+                    "type": "serie",
                     "uri": "SR2"
                 }
             }

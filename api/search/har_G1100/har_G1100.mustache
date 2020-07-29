@@ -1,0 +1,126 @@
+{
+    "size": {{ha.size}}{{^ha.size}}10{{/ha.size}},
+    "from": {{ha.from}}{{^ha.from}}0{{/ha.from}},
+    "query": {
+        "bool": {
+            "filter": [
+                {{#ha.query}}
+                {
+                    "match": {
+                        "content": {
+                            "query": "{{ha.query}}"
+                        }
+                    }
+                }
+                {{#ha.site}},{{/ha.site}}
+                {{^ha.site}}{{#ha.date}},{{/ha.date}}{{/ha.site}}
+                {{^ha.site}}{{^ha.date}}{{#ha.antroponym}},{{/ha.antroponym}}{{/ha.date}}{{/ha.site}}
+                {{^ha.site}}{{^ha.date}}{{^ha.antroponym}}{{#ha.toponym}},{{/ha.toponym}}{{/ha.antroponym}}{{/ha.date}}{{/ha.site}}
+                {{^ha.site}}{{^ha.date}}{{^ha.antroponym}}{{^ha.toponym}}{{#ha.organization}},{{/ha.organization}}{{/ha.toponym}}{{/ha.antroponym}}{{/ha.date}}{{/ha.site}}
+                {{/ha.query}}
+                {{#ha.site}}
+                {
+                    "terms": {
+                        "root_url":{{#toJson}}ha.site.sites{{/toJson}}
+                    }
+                }
+                {{#ha.date}},{{/ha.date}}
+                {{^ha.date}}{{#ha.antroponym}},{{/ha.antroponym}}{{/ha.date}}
+                {{^ha.date}}{{^ha.antroponym}}{{#ha.toponym}},{{/ha.toponym}}{{/ha.antroponym}}{{/ha.date}}
+                {{^ha.date}}{{^ha.antroponym}}{{^ha.toponym}}{{#ha.organization}},{{/ha.organization}}{{/ha.toponym}}{{/ha.antroponym}}{{/ha.date}}
+                {{/ha.site}}
+                {{#ha.date}}
+                {
+                    "terms": {
+                        "harvest_date":{{#toJson}}ha.date.dates{{/toJson}}
+                    }
+                }
+                {{#ha.antroponym}},{{/ha.antroponym}}
+                {{^ha.antroponym}}{{#ha.toponym}},{{/ha.toponym}}{{/ha.antroponym}}
+                {{^ha.antroponym}}{{^ha.toponym}}{{#ha.organization}},{{/ha.organization}}{{/ha.toponym}}{{/ha.antroponym}}
+                {{/ha.date}}
+                {{#ha.antroponym}}
+                {
+                    "terms": {
+                        "antroponym":{{#toJson}}ha.antroponym.antroponyms{{/toJson}}
+                    }
+                }
+                {{#ha.toponym}},{{/ha.toponym}}
+                {{^ha.toponym}}{{#ha.organization}},{{/ha.organization}}{{/ha.toponym}}
+                {{/ha.antroponym}}
+                {{#ha.toponym}}
+                {
+                    "terms": {
+                        "toponym":{{#toJson}}ha.toponym.toponyms{{/toJson}}
+                    }
+                }
+                {{#ha.organization}},{{/ha.organization}}
+                {{/ha.toponym}}
+                {{#ha.organization}}
+                {
+                    "terms": {
+                        "organization":{{#toJson}}ha.organization.organizations{{/toJson}}
+                    }
+                }
+                {{/ha.organization}}
+            ]
+        }
+    },
+    "aggs": {
+        "site_count": {
+            "cardinality": {
+                "field": "root_url"
+            }
+        },
+        "site_filter": {
+            "terms": {
+                "field": "root_url",
+                "size": {{ha.site_size}}{{^ha.site_size}}5{{/ha.site_size}}
+            }
+        },
+        "date_count": {
+            "cardinality": {
+                "field": "harvest_date"
+            }
+        },
+        "date_filter": {
+            "terms": {
+                "field": "harvest_date",
+                "size": {{ha.date_size}}{{^ha.date_size}}5{{/ha.date_size}}
+            }
+        },
+        "antroponym_count": {
+            "cardinality": {
+                "field": "antroponym"
+            }
+        },
+        "antroponym_filter": {
+            "terms": {
+                "field": "antroponym",
+                "size": {{ha.antroponym_size}}{{^ha.antroponym_size}}5{{/ha.antroponym_size}}
+            }
+        },
+        "organization_count": {
+            "cardinality": {
+                "field": "organization"
+            }
+        },
+        "organization_filter": {
+            "terms": {
+                "field": "organization",
+                "size": {{ha.organization_size}}{{^ha.organization_size}}5{{/ha.organization_size}}
+            }
+        },
+        "toponym_count": {
+            "cardinality": {
+                "field": "toponym"
+            }
+        },
+        "toponym_filter": {
+            "terms": {
+                "field": "toponym",
+                "size": {{ha.toponym_size}}{{^ha.toponym_size}}5{{/ha.toponym_size}}
+            }
+        }
+    }
+}

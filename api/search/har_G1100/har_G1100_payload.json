@@ -1,0 +1,45 @@
+{
+    "id": "har_G1100",
+    "params": {
+        "ha": {
+            "size": 4,
+            "from": 0,
+            "site_size": 4,
+            "date_size": 4,
+            "antroponym_size": 4,
+            "toponym_size": 4,
+            "organization_size": 4,
+            "query": "Roma",
+            "site": {
+                "sites": [
+                    "http://www.storiaxxisecolo.it/",
+                    "http://www.centrodorso.it/"
+                ]
+            },
+            "date": {
+                "dates": [
+                    "20200513",
+                    "20200514"
+                ]
+            },
+            "antroponym": {
+                "antroponyms": [
+                    "Dorso Elisa",
+                    "Nenni Pietro"
+                ]
+            },
+            "toponym": {
+                "toponyms": [
+                    "Roma (RM)",
+                    "Milano (MI)"
+                ]
+            },
+            "organization": {
+                "organizations": [
+                    "Polizia",
+                    "Comune Di Sant' Angelo Dei Lombardi"
+                ]
+            }
+        }
+    }
+}

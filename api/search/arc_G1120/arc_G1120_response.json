@@ -1,0 +1,257 @@
+{
+    "took": 5,
+    "timed_out": false,
+    "_shards": {
+        "total": 4,
+        "successful": 4,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 1,
+            "relation": "eq"
+        },
+        "max_score": 0.0,
+        "hits": [
+            {
+                "_index": "bcc-archivi",
+                "_type": "_doc",
+                "_id": "SIC_CA_352",
+                "_score": 0.0,
+                "_source": {
+                    "name": "Registri della popolazione",
+                    "uri": "SIC_CA_352"
+                },
+                "inner_hits": {
+                    "uad": {
+                        "hits": {
+                            "total": {
+                                "value": 10,
+                                "relation": "eq"
+                            },
+                            "max_score": null,
+                            "hits": [
+                                {
+                                    "_index": "bcc-archivi",
+                                    "_type": "_doc",
+                                    "_id": "SIC_CA_352",
+                                    "_nested": {
+                                        "field": "uad",
+                                        "offset": 0
+                                    },
+                                    "_score": null,
+                                    "_source": {
+                                        "path": "SIC_CA_350|SIC_CA_352|SIC_UA_9225",
+                                        "name": "Indice del registro della popolazione (Civitella Licinio)",
+                                        "dates": [
+                                            {
+                                                "gte": "1801/01/01",
+                                                "lte": "1901/01/01"
+                                            }
+                                        ],
+                                        "type": "Unità archivistica",
+                                        "uri": "SIC_UA_9225"
+                                    },
+                                    "sort": [
+                                        "Indice del registro della popolazione (Civitella Licinio)",
+                                        "SIC_UA_9225"
+                                    ]
+                                },
+                                {
+                                    "_index": "bcc-archivi",
+                                    "_type": "_doc",
+                                    "_id": "SIC_CA_352",
+                                    "_nested": {
+                                        "field": "uad",
+                                        "offset": 1
+                                    },
+                                    "_score": null,
+                                    "_source": {
+                                        "path": "SIC_CA_350|SIC_CA_352|SIC_UA_9226",
+                                        "name": "Indici dei registri della popolazione",
+                                        "dates": [
+                                            {
+                                                "gte": "1801/01/01",
+                                                "lte": "1901/01/01"
+                                            }
+                                        ],
+                                        "type": "Unità archivistica",
+                                        "uri": "SIC_UA_9226"
+                                    },
+                                    "sort": [
+                                        "Indici dei registri della popolazione",
+                                        "SIC_UA_9226"
+                                    ]
+                                },
+                                {
+                                    "_index": "bcc-archivi",
+                                    "_type": "_doc",
+                                    "_id": "SIC_CA_352",
+                                    "_nested": {
+                                        "field": "uad",
+                                        "offset": 2
+                                    },
+                                    "_score": null,
+                                    "_source": {
+                                        "path": "SIC_CA_350|SIC_CA_352|SIC_UA_9227",
+                                        "name": "Registro della popolazione (Civitella Licinio)",
+                                        "dates": [
+                                            {
+                                                "gte": "1801/01/01",
+                                                "lte": "1901/01/01"
+                                            }
+                                        ],
+                                        "type": "Unità archivistica",
+                                        "uri": "SIC_UA_9227"
+                                    },
+                                    "sort": [
+                                        "Registro della popolazione (Civitella Licinio)",
+                                        "SIC_UA_9227"
+                                    ]
+                                },
+                                {
+                                    "_index": "bcc-archivi",
+                                    "_type": "_doc",
+                                    "_id": "SIC_CA_352",
+                                    "_nested": {
+                                        "field": "uad",
+                                        "offset": 3
+                                    },
+                                    "_score": null,
+                                    "_source": {
+                                        "path": "SIC_CA_350|SIC_CA_352|SIC_UA_9228",
+                                        "name": "Registro della popolazione (Grottole)",
+                                        "dates": [
+                                            {
+                                                "gte": "1801/01/01",
+                                                "lte": "1901/01/01"
+                                            }
+                                        ],
+                                        "type": "Unità archivistica",
+                                        "uri": "SIC_UA_9228"
+                                    },
+                                    "sort": [
+                                        "Registro della popolazione (Grottole)",
+                                        "SIC_UA_9228"
+                                    ]
+                                },
+                                {
+                                    "_index": "bcc-archivi",
+                                    "_type": "_doc",
+                                    "_id": "SIC_CA_352",
+                                    "_nested": {
+                                        "field": "uad",
+                                        "offset": 4
+                                    },
+                                    "_score": null,
+                                    "_source": {
+                                        "path": "SIC_CA_350|SIC_CA_352|SIC_UA_9229",
+                                        "name": "Registro della popolazione (S. Felice)",
+                                        "dates": [
+                                            {
+                                                "gte": "1801/01/01",
+                                                "lte": "1901/01/01"
+                                            }
+                                        ],
+                                        "type": "Unità archivistica",
+                                        "uri": "SIC_UA_9229"
+                                    },
+                                    "sort": [
+                                        "Registro della popolazione (S. Felice)",
+                                        "SIC_UA_9229"
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "aggregations": {
+        "uad": {
+            "doc_count": 16,
+            "uad_filter": {
+                "doc_count": 10,
+                "digital": {
+                    "doc_count_error_upper_bound": 0,
+                    "sum_other_doc_count": 0,
+                    "buckets": [
+                        {
+                            "key": 0,
+                            "key_as_string": "false",
+                            "doc_count": 10
+                        }
+                    ]
+                },
+                "datefrom_filter": {
+                    "doc_count": 10,
+                    "century_count": {
+                        "value": 1
+                    },
+                    "century_buckets": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "key": "1801-1900",
+                                "doc_count": 10,
+                                "quarter_buckets": {
+                                    "doc_count_error_upper_bound": 0,
+                                    "sum_other_doc_count": 0,
+                                    "buckets": [
+                                        {
+                                            "key": "1801-1825",
+                                            "doc_count": 7
+                                        },
+                                        {
+                                            "key": "1826-1850",
+                                            "doc_count": 3
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "dateto_filter": {
+                    "doc_count": 10,
+                    "century_count": {
+                        "value": 1
+                    },
+                    "century_buckets": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "key": "1901-2000",
+                                "doc_count": 10,
+                                "quarter_buckets": {
+                                    "doc_count_error_upper_bound": 0,
+                                    "sum_other_doc_count": 0,
+                                    "buckets": [
+                                        {
+                                            "key": "1901-1925",
+                                            "doc_count": 10
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                "type": {
+                    "doc_count_error_upper_bound": 0,
+                    "sum_other_doc_count": 0,
+                    "buckets": [
+                        {
+                            "key": "Unità archivistica",
+                            "doc_count": 10
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

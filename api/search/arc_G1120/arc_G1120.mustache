@@ -1,0 +1,271 @@
+{
+    "size": 1,
+    "_source": [
+        "uri",
+        "name"
+    ],
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "term": {
+                        "uri": "{{uad.ca_uri}}"
+                    }
+                },
+                {
+                    "nested": {
+                        "path": "uad",
+                        "query": {
+                            "bool": {
+                                "filter": [
+                                    {
+                                        "terms": {
+                                            "uad.is_child": [
+                                                "true"
+                                            ]
+                                        }
+                                    }
+                                    {{#uad.query}},
+                                    {
+                                        "multi_match": {
+                                            "query": "{{uad.query}}",
+                                            "type": "best_fields",
+                                            "fields": [
+                                                "uad.names",
+                                                "uad.content",
+                                                "uad.history",
+                                                "uad.description"
+                                            ]
+                                        }
+                                    }
+                                    {{/uad.query}}
+                                    {{#uad.type}},
+                                    {
+                                        "terms": {
+                                            "uad.type": {{#toJson}}uad.type.types{{/toJson}}
+                                        }
+                                    }
+                                    {{/uad.type}}
+                                    {{#uad.digital}},
+                                    {
+                                        "terms": {
+                                            "uad.digital_object": {{#toJson}}uad.digital.digitals{{/toJson}}
+                                        }
+                                    }
+                                    {{/uad.digital}}
+                                    {{#uad.century_from}},
+                                    {
+                                        "terms": {
+                                            "uad.century_from": {{#toJson}}uad.century_from.centuries{{/toJson}}
+                                        }
+                                    }
+                                    {{#uad.century_quarter_from}},
+                                    {
+                                        "terms": {
+                                            "uad.century_quarter_from": {{#toJson}}uad.century_quarter_from.quarters{{/toJson}}
+                                        }
+                                    }
+                                    {{/uad.century_quarter_from}}
+                                    {{/uad.century_from}}
+                                    {{#uad.century_to}},
+                                    {
+                                        "terms": {
+                                            "uad.century_to": {{#toJson}}uad.century_to.centuries{{/toJson}}
+                                        }
+                                    }
+                                    {{#uad.century_quarter_to}},
+                                    {
+                                        "terms": {
+                                            "uad.century_quarter_to": {{#toJson}}uad.century_quarter_to.quarters{{/toJson}}
+                                        }
+                                    }
+                                    {{/uad.century_quarter_to}}
+                                    {{/uad.century_to}}
+                                ]
+                            }
+                        },
+                        "inner_hits": {
+                            "size": {{uad.size}}{{^uad.size}}5{{/uad.size}},
+                            "from": {{uad.from}}{{^uad.from}}0{{/uad.from}},
+                            "_source": [
+                                "uad.uri",
+                                "uad.path",
+                                "uad.type",
+                                "uad.name",
+                                "uad.dates"
+                            ],
+                            "sort": [
+                                {
+                                    "uad.name": {
+                                        "order": "asc"
+                                    },
+                                    "uad.uri": {
+                                        "order": "asc"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "aggs": {
+        "uad": {
+            "nested": {
+                "path": "uad"
+            },
+            "aggs": {
+                "uad_filter": {
+                    "filter": {
+                        "bool": {
+                            "filter": [
+                                {
+                                    "terms": {
+                                        "uad.is_child": [
+                                            "true"
+                                        ]
+                                    }
+                                }
+                                {{#uad.query}},
+                                {
+                                    "multi_match": {
+                                        "query": "{{uad.query}}",
+                                        "type": "best_fields",
+                                        "fields": [
+                                            "uad.names",
+                                            "uad.content",
+                                            "uad.history",
+                                            "uad.description"
+                                        ]
+                                    }
+                                }
+                                {{/uad.query}}
+                                {{#uad.type}},
+                                {
+                                    "terms": {
+                                        "uad.type": {{#toJson}}uad.type.types{{/toJson}}
+                                    }
+                                }
+                                {{/uad.type}}
+                                {{#uad.digital}},
+                                {
+                                    "terms": {
+                                        "uad.digital_object": {{#toJson}}uad.digital.digitals{{/toJson}}
+                                    }
+                                }
+                                {{/uad.digital}}
+                                {{#uad.century_from}},
+                                {
+                                    "terms": {
+                                        "uad.century_from": {{#toJson}}uad.century_from.centuries{{/toJson}}
+                                    }
+                                }
+                                {{#uad.century_quarter_from}},
+                                {
+                                    "terms": {
+                                        "uad.century_quarter_from": {{#toJson}}uad.century_quarter_from.quarters{{/toJson}}
+                                    }
+                                }
+                                {{/uad.century_quarter_from}}
+                                {{/uad.century_from}}
+                                {{#uad.century_to}},
+                                {
+                                    "terms": {
+                                        "uad.century_to": {{#toJson}}uad.century_to.centuries{{/toJson}}
+                                    }
+                                }
+                                {{#uad.century_quarter_to}},
+                                {
+                                    "terms": {
+                                        "uad.century_quarter_to": {{#toJson}}uad.century_quarter_to.quarters{{/toJson}}
+                                    }
+                                }
+                                {{/uad.century_quarter_to}}
+                                {{/uad.century_to}}
+                            ]
+                        }
+                    },
+                    "aggs": {
+                        "type": {
+                            "terms": {
+                                "field": "uad.type"
+                            }
+                        },
+                        "digital": {
+                            "terms": {
+                                "field": "uad.digital_object"
+                            }
+                        },
+                        "datefrom_filter": {
+                            "filter": {
+                                "exists": {
+                                    "field": "uad.century_from"
+                                }
+                            },
+                            "aggs": {
+                                "century_count": {
+                                    "cardinality": {
+                                        "field": "uad.century_from"
+                                    }
+                                },
+                                "century_buckets": {
+                                    "terms": {
+                                        "field": "uad.century_from",
+                                        "size": {{uad.century_from_size}}{{^uad.century_from_size}}5{{/uad.century_from_size}},
+                                        "order": {
+                                            "_key": "asc"
+                                        }
+                                    },
+                                    "aggs": {
+                                        "quarter_buckets": {
+                                            "terms": {
+                                                "field": "uad.century_quarter_from",
+                                                "order": {
+                                                    "_key": "asc"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "dateto_filter": {
+                            "filter": {
+                                "exists": {
+                                    "field": "uad.century_to"
+                                }
+                            },
+                            "aggs": {
+                                "century_count": {
+                                    "cardinality": {
+                                        "field": "uad.century_to"
+                                    }
+                                },
+                                "century_buckets": {
+                                    "terms": {
+                                        "field": "uad.century_to",
+                                        "size": {{uad.century_to_size}}{{^uad.century_to_size}}5{{/uad.century_to_size}},
+                                        "order": {
+                                            "_key": "asc"
+                                        }
+                                    },
+                                    "aggs": {
+                                        "quarter_buckets": {
+                                            "terms": {
+                                                "field": "uad.century_quarter_to",
+                                                "order": {
+                                                    "_key": "asc"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

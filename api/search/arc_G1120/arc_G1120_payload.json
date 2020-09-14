@@ -1,0 +1,46 @@
+{
+    "id": "arc_G1120",
+    "params": {
+        "uad": {
+            "size":5,
+            "from":0,
+            "century_from_size":5,
+            "century_to_size":5,
+            "ca_uri": "SIC_CA_352",
+            "query": "registro",
+            "century_from": {
+                "centuries": [
+                    "1801-1900"
+                ]
+            },
+            "century_quarter_from": {
+                "quarters": [
+                    "1801-1825",
+                    "1826-1850"
+                ]
+            },
+            "century_to": {
+                "centuries": [
+                    "1901-2000"
+                ]
+            },
+            "century_quarter_to": {
+                "quarters": [
+                    "1901-1925"
+                ]
+            },
+            "type": {
+                "types": [
+                    "Unità archivistica",
+                    "Unità documentaria"
+                ]
+            },
+            "digital": {
+                "digitals": [
+                    "true",
+                    "false"
+                ]
+            }
+        }
+    }
+}

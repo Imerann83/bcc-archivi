@@ -1,0 +1,98 @@
+{
+    "took": 2,
+    "timed_out": false,
+    "_shards": {
+        "total": 4,
+        "successful": 4,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 1,
+            "relation": "eq"
+        },
+        "max_score": 0.0,
+        "hits": [
+            {
+                "_index": "bcc-archivi",
+                "_type": "_doc",
+                "_id": "SIC_CA_352",
+                "_score": 0.0,
+                "_source": {
+                    "name": "Registri della popolazione",
+                    "uri": "SIC_CA_352"
+                },
+                "inner_hits": {
+                    "uad": {
+                        "hits": {
+                            "total": {
+                                "value": 1,
+                                "relation": "eq"
+                            },
+                            "max_score": 0.0,
+                            "hits": [
+                                {
+                                    "_index": "bcc-archivi",
+                                    "_type": "_doc",
+                                    "_id": "SIC_CA_352",
+                                    "_nested": {
+                                        "field": "uad",
+                                        "offset": 13
+                                    },
+                                    "_score": 0.0,
+                                    "_source": {
+                                        "uri": "SIC_UA_9238",
+                                        "name": "Registro della popolazione (S. Maria)",
+                                        "type": "Unità archivistica",
+                                        "root_uri": "SIC_CA_350",
+                                        "root_name": "Comune di Cusano Mutri",
+                                        "dates": [
+                                            {
+                                                "gte": "1851/01/01",
+                                                "lte": "1901/01/01"
+                                            }
+                                        ],
+                                        "century_from": [
+                                            "1801-1900"
+                                        ],
+                                        "century_quarter_from": [
+                                            "1851-1875"
+                                        ],
+                                        "century_to": [
+                                            "1901-2000"
+                                        ],
+                                        "century_quarter_to": [
+                                            "1901-1925"
+                                        ],
+                                        "level": "2",
+                                        "path": "SIC_CA_350|SIC_CA_352|SIC_UA_9238",
+                                        "names": [
+                                            "Registro della popolazione (S. Maria)"
+                                        ],
+                                        "content": [
+                                            "Registro della popolazione del Comune di Cusano Mutri relativo ai nuclei familiari presenti nella località Santa Maria."
+                                        ],
+                                        "toponym": [
+                                            "Cusano Mutri (BN)"
+                                        ],
+                                        "digital_object": "false",
+                                        "is_child": true
+                                    },
+                                    "highlight": {
+                                        "uad.names": [
+                                            "<em>Registro</em> della popolazione (S. Maria)"
+                                        ],
+                                        "uad.content": [
+                                            "<em>Registro</em> della popolazione del Comune di Cusano Mutri relativo ai nuclei familiari presenti nella località Santa Maria."
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

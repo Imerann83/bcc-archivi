@@ -1,0 +1,9 @@
+{
+    "id": "arc_G1121",
+    "params": {
+        "uad": {
+            "uri": "SIC_UA_9238",
+            "query": "registro"
+        }
+    }
+}

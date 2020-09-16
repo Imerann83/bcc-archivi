@@ -1,0 +1,63 @@
+{
+    "size": 1,
+    "_source": [
+        "uri",
+        "name"
+    ],
+    "query": {
+        "bool": {
+            "filter": [
+                {
+                    "nested": {
+                        "path": "uad",
+                        "query": {
+                            "bool": {
+                                "filter": [
+                                    {
+                                        "terms": {
+                                            "uad.is_child": [
+                                                "true"
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "term": {
+                                            "uad.uri": "{{uad.uri}}"
+                                        }
+                                    }
+                                    {{#uad.query}},
+                                    {
+                                        "multi_match": {
+                                            "query": "{{uad.query}}",
+                                            "type": "best_fields",
+                                            "fields": [
+                                                "uad.names",
+                                                "uad.content",
+                                                "uad.history",
+                                                "uad.description"
+                                            ]
+                                        }
+                                    }
+                                    {{/uad.query}}
+                                ]
+                            }
+                        },
+                        "inner_hits": {
+                            "size": 1,
+                            "highlight": {
+                                "number_of_fragments": 0,
+                                "no_match_size": 10000,
+                                "fields": {
+                                    "uad.content": {},
+                                    "uad.names": {},
+                                    "uad.history": {},
+                                    "uad.description": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}
